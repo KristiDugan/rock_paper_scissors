@@ -11,12 +11,53 @@
 
   const computerPlay = () => {
     let randomNumber = Math.floor(Math.random() * 3); // returns random integer from 0 to 2
+    // assign each of the three possibilities a string
     return (randomNumber === 0) ? 'Rock' : 
     (randomNumber === 1) ? 'Paper' : 
     'Scissors';
   }
-  console.log(computerPlay());
 
+  const capitalize = (str) => {
+    return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase();
+  };
+
+  function playRound(playerSelection, computerSelection) {
+    // capitalize playerSelection before comparison
+    playerSelection = capitalize(playerSelection);
+    
+    // create each scenario as a string
+    let bothPlays = playerSelection + ' vs. ' + computerSelection;
+    
+    // simplify scenarios with a tie
+    if (playerSelection === computerSelection) {
+      bothPlays = 'tie';
+    }
+
+    let message;  // create a variable to hold the game results message
+
+    // compare for each case and for tie
+    switch (bothPlays) {
+      case 'Rock vs. Scissors' : 
+      case 'Paper vs. Rock' : 
+      case 'Scissors vs. Paper' :
+        message = `You win! ${playerSelection} beats ${computerSelection}`;
+      break;
+
+      case 'tie' : 
+        message = 'You tied!';
+      break;
+
+      default : 
+        message = `You lose! ${computerSelection} beats ${playerSelection}`;
+      break;
+    }
+
+    return message + "\nplayerSelection was: " + playerSelection + " and computerSelection was: " + computerSelection;
+  }
+
+  const playerSelection = 'ROCK';
+  const computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
 
   </script>
 </body>
