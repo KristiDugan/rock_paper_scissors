@@ -9,7 +9,13 @@
 <body>
   <script type="text/javascript">
 
-
+  const computerPlay = () => {
+    let randomNumber = Math.floor(Math.random() * 3); // returns random integer from 0 to 2
+    return (randomNumber === 0) ? 'Rock' : 
+    (randomNumber === 1) ? 'Paper' : 
+    'Scissors';
+  }
+  console.log(computerPlay());
 
 
   </script>
