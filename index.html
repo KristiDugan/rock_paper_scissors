@@ -28,7 +28,6 @@
     // create each scenario as a string
     let bothPlays = playerSelection + ' vs. ' + computerSelection;
     
-    // simplify scenarios with a tie
     if (playerSelection === computerSelection) {
       bothPlays = 'tie';
     }
@@ -52,13 +51,34 @@
       break;
     }
 
-    return message + "\nplayerSelection was: " + playerSelection + " and computerSelection was: " + computerSelection;
+    // return message + "\nplayerSelection was: " + playerSelection + " and computerSelection was: " + computerSelection;
+    return message;
   }
 
   const playerSelection = 'ROCK';
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
+  
+  const game = () => {
+    const computerSelection = computerPlay();
+    let roundResult = playRound(playerSelection, computerSelection);
+    let = playerScore = 0;
+    let = computerScore = 0;
+    let scoreMessage = `You: ${playerScore} Computer: ${computerScore}`;
 
+    function score() {
+      if (roundResult.startsWith("You win")) {
+        playerScore++;
+      } else if (roundResult.startsWith("You lose")) {
+        computerScore++;
+      }
+      return scoreMessage = `You: ${playerScore} Computer: ${computerScore}`;
+    }
+    score();
+    return roundResult + " \n" + scoreMessage;
+  }
+
+  console.log(game());
+
+  
   </script>
 </body>
 </html>
