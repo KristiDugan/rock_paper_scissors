@@ -56,12 +56,12 @@
   }
 
   const playerSelection = 'ROCK';
-  
+  const computerSelection = computerPlay();
+
   const game = () => {
-    const computerSelection = computerPlay();
     let roundResult = playRound(playerSelection, computerSelection);
-    let = playerScore = 0;
-    let = computerScore = 0;
+    let playerScore = 0;
+    let computerScore = 0;
     let scoreMessage = `You: ${playerScore} Computer: ${computerScore}`;
 
     function score() {
