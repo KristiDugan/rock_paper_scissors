@@ -1,9 +1,7 @@
 const computerPlay = () => {
 	let randomNumber = Math.floor(Math.random() * 3); // returns random integer from 0 to 2
 	// assign each of the three possibilities a string
-	return (randomNumber === 0) ? 'Rock' : 
-	(randomNumber === 1) ? 'Paper' : 
-	'Scissors';
+	return (randomNumber === 0) ? 'Rock' : (randomNumber === 1) ? 'Paper' : 'Scissors';
 }
 
 const capitalize = (str) => {
@@ -11,10 +9,7 @@ const capitalize = (str) => {
 };
 
 function playRound(playerSelection, computerSelection) {
-	// capitalize playerSelection before comparison
 	playerSelection = capitalize(playerSelection);
-	
-	// create each scenario as a string
 	let bothPlays = playerSelection + ' vs. ' + computerSelection;
 	
 	if (playerSelection === computerSelection) {
@@ -32,7 +27,7 @@ function playRound(playerSelection, computerSelection) {
 		break;
 
 		case 'tie' : 
-			message = 'You tied!';
+			message = 'You tied! Do over!';
 		break;
 
 		default : 
@@ -45,12 +40,11 @@ function playRound(playerSelection, computerSelection) {
 const playerSelection = 'ROCK';
 const computerSelection = computerPlay();
 
-const game = () => {
-	
+const game = (numberOfRounds) => {
 	let playerScore = 0;
 	let computerScore = 0;
-	let scoreMessage = '';
-	let currentRound = 0;
+	let roundScore = '';
+	let currentRound = 1;
 	let gameWinner = "It's a draw";
 
 	function score() {
@@ -59,16 +53,19 @@ const game = () => {
 			playerScore++;
 		} else if (roundResult.startsWith("You lose")) {
 			computerScore++;
+		} else {
+			numberOfRounds++;
 		}
-		currentRound++;
-		scoreMessage = `--Round ${currentRound}--\n${roundResult}\nYou: ${playerScore} Computer: ${computerScore}\n`;
-		console.log(scoreMessage);
+		roundScore = `--Round ${currentRound}--\n${roundResult}\nYou: ${playerScore} Computer: ${computerScore}\n`;
+		if (roundResult.startsWith("You win") || roundResult.startsWith("You lose")) {
+			currentRound++;
+		} 
+		console.log(roundScore);
 	}
-	score();
-	score();
-	score();
-	score();
-	score();
+	
+	for (var i = 0; i < numberOfRounds; i++) {
+		score();
+	}
 
 	if (playerScore > computerScore) {
 		gameWinner = 'You are the winner!';
@@ -78,4 +75,4 @@ const game = () => {
 	return gameWinner;
 }
 
-console.log(game());
+console.log(game(5));
