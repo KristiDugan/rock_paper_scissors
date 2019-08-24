@@ -9,6 +9,7 @@ const capitalize = (str) => {
 };
 
 function playRound(playerSelection, computerSelection) {
+	playerSelection = prompt('Rock, paper, or scissors?');
 	playerSelection = capitalize(playerSelection);
 	let bothPlays = playerSelection + ' vs. ' + computerSelection;
 	
@@ -37,7 +38,8 @@ function playRound(playerSelection, computerSelection) {
 	return message;
 }
 
-const playerSelection = 'ROCK';
+// const playerSelection = 'ROCK';
+let playerSelection;
 const computerSelection = computerPlay();
 
 const game = (numberOfRounds) => {
