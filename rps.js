@@ -47,6 +47,7 @@ const game = (numberOfRounds) => {
 	let computerScore = 0;
 	let roundScore = '';
 	let currentRound = 1;
+	const totalRounds = numberOfRounds;
 	let gameWinner = "It's a draw";
 
 	function score() {
@@ -58,7 +59,7 @@ const game = (numberOfRounds) => {
 		} else {
 			numberOfRounds++;
 		}
-		roundScore = `--Round ${currentRound}--\n${roundResult}\nYou: ${playerScore} Computer: ${computerScore}\n`;
+		roundScore = `--Round ${currentRound} of ${totalRounds}--\n${roundResult}\nYou: ${playerScore} Computer: ${computerScore}\n`;
 		if (roundResult.startsWith("You win") || roundResult.startsWith("You lose")) {
 			currentRound++;
 		} 
@@ -66,9 +67,11 @@ const game = (numberOfRounds) => {
 	}
 	
 	for (var i = 0; i < numberOfRounds; i++) {
-		score();
+		if (playerScore <= totalRounds/2 && computerScore <= totalRounds/2) {
+			score();
+		}
 	}
-
+	
 	if (playerScore > computerScore) {
 		gameWinner = 'You are the winner!';
 	} else if (computerScore > playerScore) {
